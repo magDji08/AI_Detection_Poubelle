@@ -1,10 +1,61 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-# CPU wheel of PyTorch (required by ultralytics). Change/remove the index for GPU builds.
-torch==2.1.1+cpu
+# --extra-index-url https://download.pytorch.org/whl/cpu
+# # CPU wheel of PyTorch (required by ultralytics). Change/remove the index for GPU builds.
+# torch==2.1.1+cpu
 
-streamlit
-numpy
-Pillow
-# Pin a compatible opencv build to avoid wheel issues on Streamlit Cloud
-opencv-python-headless==4.7.0.72
-ultralytics
+# streamlit
+# numpy
+# Pillow
+# # Pin a compatible opencv build to avoid wheel issues on Streamlit Cloud
+# opencv-python-headless==4.7.0.72
+# ultralytics
+
+
+# ============================================
+# DÉTECTEUR INTELLIGENT DE POUBELLES
+# Requirements.txt - Dépendances Python
+# ============================================
+
+# === FRAMEWORK WEB ===
+streamlit>=1.28.0
+
+# === DEEP LEARNING & YOLO ===
+# PyTorch CPU (pour Streamlit Cloud et environnements sans GPU)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.1+cpu
+torchvision==0.16.1+cpu
+
+# YOLO - Détection d'objets
+ultralytics>=8.0.0
+
+# === TRAITEMENT D'IMAGES ===
+# OpenCV (version headless pour éviter les conflits GUI)
+opencv-python-headless==4.8.1.78
+Pillow>=10.0.0
+
+# === CALCUL SCIENTIFIQUE ===
+numpy>=1.24.0,<2.0.0
+
+# === UTILITAIRES ===
+# Pour la gestion des chemins et fichiers
+pathlib2>=2.3.7
+
+# === OPTIONNEL (recommandé) ===
+# Accélération des opérations
+scipy>=1.10.0
+pandas>=2.0.0
+
+# ============================================
+# NOTES D'INSTALLATION
+# ============================================
+# 
+# Installation locale :
+#   pip install -r requirements.txt
+#
+# Installation avec GPU (remplacer torch CPU) :
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+#
+# Pour Streamlit Cloud :
+#   Ces dépendances sont optimisées et fonctionneront directement
+#
+# Taille approximative : ~500MB (avec PyTorch CPU)
+# ============================================
