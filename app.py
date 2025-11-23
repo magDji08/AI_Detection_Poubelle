@@ -9,7 +9,16 @@ from pathlib import Path
 import streamlit as st
 from PIL import Image
 import numpy as np
-import cv2
+# cv2 (OpenCV) peut poser des problèmes de wheel sur certains environnements (ex: Python 3.13)
+try:
+    import cv2
+    CV2_AVAILABLE = True
+except Exception as e:
+    CV2_AVAILABLE = False
+    cv2 = None
+    # Nous n'appelons pas st.* ici (import-level) pour éviter des erreurs si Streamlit
+    # n'est pas encore initialisé. L'erreur sera affichée plus tard quand l'app
+    # s'exécutera et utilisera cv2 (via st.error).
 
 # --- 1. Imports conditionnels et initialisation ---
 try:
@@ -566,6 +575,9 @@ def run_image_inference(model, img_path, conf=0.25, iou=0.45):
 def extract_frames_from_video(video_path, max_frames=6):
     """Extrait des frames d'une vidéo pour prévisualisation."""
     frames = []
+    if not CV2_AVAILABLE:
+        st.error("OpenCV (`cv2`) n'est pas disponible dans cet environnement. Sur Streamlit Cloud, fixez une version Python compatible (ex: 3.10) et pinnez `opencv-python-headless` dans `requirements.txt`.")
+        return []
     try:
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
