@@ -1,3 +1,7 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+# CPU wheel of PyTorch (required by ultralytics). Change/remove the index for GPU builds.
+torch==2.1.1+cpu
+
 streamlit
 numpy
 Pillow
