@@ -20,8 +20,9 @@ streamlit>=1.28.0
 
 # === DEEP LEARNING & YOLO ===
 # PyTorch CPU (pour Streamlit Cloud et environnements sans GPU)
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.1.1+cpu
+# Si nécessaire, décommentez la ligne ci-dessous pour utiliser l'index PyTorch CPU
+# --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.9.1+cpu
 torchvision==0.16.1+cpu
 
 # YOLO - Détection d'objets
